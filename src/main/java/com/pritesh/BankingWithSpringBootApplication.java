@@ -1,4 +1,4 @@
-package com.pritesh.bankingwithspringboot;
+package com.pritesh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

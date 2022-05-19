@@ -1,6 +1,6 @@
 package com.pritesh.services;
 
-import com.pritesh.POJO.UserCredentials;
+import com.pritesh.dao.UserCredentials;
 import com.pritesh.repositories.LoginRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,18 +12,13 @@ public class LoginService {
     @Autowired
     LoginRepositories loginRepositories;
 
-    public boolean usernameValidate(String userName){
-        return loginRepositories.existsById(userName);
-    }
-
-    public boolean passwordValidate(String userName, String password){
+    public boolean usernameAndPasswordValidate(String userName, String password) {
         Optional<UserCredentials> pass = loginRepositories.findById(userName);
-        String databasePassword = String.valueOf(pass.get());
-        if ( databasePassword.equals(password)){
-            return true;
+        if (pass.isPresent()) {
+            UserCredentials userCredentials = pass.get();
+            return userCredentials.getPassword().equals(password);
         }
         else return false;
-    }
 
 
-}
+}}
