@@ -1,12 +1,9 @@
 package com.pritesh.controllers;
 
+import com.pritesh.POJO.LoginPageCred;
 import com.pritesh.services.LoginService;
-import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class LoginController {
@@ -14,12 +11,12 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @PostMapping(value="/login" , ContentType = APPLICATION)
-    private boolean validateCredentials(@RequestParam String userName, @RequestParam String password){
+    @PostMapping(value="/login" )
+    private boolean validateCredentials(@RequestBody LoginPageCred loginPageCred){
 
-        if( userName != null && password != null
-                && !userName.equals("") && !password.equals("")
-                && loginService.usernameAndPasswordValidate(userName, password))
+        if( loginPageCred.getUserName() != null && loginPageCred.getPassWord() != null
+                && !loginPageCred.getUserName().equals("") && !loginPageCred.getPassWord().equals("")
+                && loginService.usernameAndPasswordValidate(loginPageCred.getUserName(), loginPageCred.getPassWord()))
 
 
             return true;
