@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,29 +8,57 @@
     <title>log-in page</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-   <div class="center">
-       <h1>Log-In</h1>
-       <form method="post">
-           <div class="txt_field">
-               <input type="text" required>
-               <span></span>
-               <label for="">username</label>
+    <div class="center">
+        <h1>Log-In</h1>
+        <form action="/" method="post">
+            <div class="txt_field">
+                <label for="username"></label><input type="text" required id="username">
+                <span></span>
+                <label>username</label>
 
-           </div>
-           <div class="txt_field">
-            <input type="password" required>
-            <span></span>
-            <label for="">password</label>
-        </div>
-        <div class="pass">forgot password?</div>
-        <a href="F:\bank project\account.html" target="_blank">
-        <input type="submit" value="Log-in">
-       </a>
+            </div>
+            <div class="txt_field">
+                <label for="password"></label><input type="password" required id="password">
+                <span></span>
+                <label>password</label>
+            </div>
+            <div class="pass">forgot password?</div>
 
-        </div>
-       </form>
-   </div> 
-   
+
+        </form>
+        <input type="submit" value="Log-in" id="login_button">
+    </div>
+
+
+    <script>
+        document.getElementById("login_button").addEventListener("click", sendData);
+
+        function sendData() {
+
+            const name = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+            const url = "http://localhost:8080/";
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+
+                    console.log(xhr.response);
+                }
+                else {
+                    console.log("error");
+                }
+            }
+            var data = JSON.stringify({"username":name.value,"password": pass.value })
+            xhr.send(data);
+        }
+
+    </script>
+
 </body>
+
 </html>

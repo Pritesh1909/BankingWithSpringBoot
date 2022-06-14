@@ -1,4 +1,4 @@
-package com.pritesh.dao;
+package com.pritesh.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

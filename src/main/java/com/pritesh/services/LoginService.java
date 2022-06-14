@@ -1,6 +1,6 @@
 package com.pritesh.services;
 
-import com.pritesh.dao.UserCredentials;
+import com.pritesh.model.UserCredentials;
 import com.pritesh.repositories.LoginRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
